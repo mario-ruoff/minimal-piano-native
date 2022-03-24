@@ -9,7 +9,6 @@ import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var headingButton: Button
     private lateinit var soundPool: SoundPool
     private var sound1: Int = 0
 
@@ -27,14 +26,14 @@ class MainActivity : AppCompatActivity() {
             .build()
         sound1 = soundPool.load(this, R.raw.acoustic_grand_piano_a3, 1)
 
-        headingButton = findViewById(R.id.headingButton)
 
-        headingButton.setOnTouchListener { view, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-                soundPool.play(sound1, 1F, 1F, 0, 0, 1F)
-            }
-            return@setOnTouchListener view.onTouchEvent(motionEvent)
-        }
+//        headingButton.setOnTouchListener { view, motionEvent ->
+//            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+//                soundPool.play(sound1, 1F, 1F, 0, 0, 1F)
+//            }
+//            return@setOnTouchListener view.onTouchEvent(motionEvent)
+//        }
+
 
     }
 

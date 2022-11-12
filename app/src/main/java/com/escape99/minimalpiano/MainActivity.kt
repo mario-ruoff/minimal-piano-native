@@ -4,8 +4,9 @@ import android.media.AudioAttributes
 import android.media.SoundPool
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MotionEvent
-import android.widget.Button
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,8 +15,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initializeAudio()
+        setFullscreenMode()
         setContentView(R.layout.activity_main)
+    }
 
+    private fun initializeAudio() {
         val audioAttributes = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_GAME)
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
@@ -25,16 +30,16 @@ class MainActivity : AppCompatActivity() {
             .setAudioAttributes(audioAttributes)
             .build()
         sound1 = soundPool.load(this, R.raw.acoustic_grand_piano_a3, 1)
+    }
 
-
-//        headingButton.setOnTouchListener { view, motionEvent ->
-//            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-//                soundPool.play(sound1, 1F, 1F, 0, 0, 1F)
-//            }
-//            return@setOnTouchListener view.onTouchEvent(motionEvent)
-//        }
-
-
+    private fun setFullscreenMode() {
+        val windowInsetsController =
+            WindowCompat.getInsetsController(window, window.decorView)
+        // Configure the behavior of the hidden system bars
+        windowInsetsController.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        // Hide both the status bar and the navigation bar
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
     }
 
 }

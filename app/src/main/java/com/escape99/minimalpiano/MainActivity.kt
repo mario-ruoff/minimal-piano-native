@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                             view.performClick()
                         }
                     }
-                    true
+                    false
                 }
             }
         }

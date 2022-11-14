@@ -4,12 +4,16 @@
         <item name="android:layout_width">90dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginStart">1dp</item>
-        <item name="android:background">@android:color/white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/white_key</item>
     </style>
     <style name="BlackKey">
         <item name="android:layout_width">58.5dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginStart">1dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
         <item name="android:background">@drawable/black_key</item>
     </style>
 </resources>

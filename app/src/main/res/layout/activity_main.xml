@@ -60,40 +60,40 @@
 
     <View style="@style/BlackKey"
         android:id="@+id/db4"
-        app:layout_constraintEnd_toEndOf="@+id/d4"
-        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/d4"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline" />
 
     <View style="@style/BlackKey"
         android:id="@+id/eb4"
-        app:layout_constraintEnd_toEndOf="@+id/e4"
-        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="@+id/d4"
+        app:layout_constraintEnd_toEndOf="@+id/e4"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline" />
 
     <View style="@style/BlackKey"
         android:id="@+id/gb4"
-        app:layout_constraintEnd_toEndOf="@+id/f4"
-        app:layout_constraintHorizontal_bias="0.675"
-        app:layout_constraintStart_toStartOf="@+id/g4"
+        app:layout_constraintStart_toStartOf="@+id/f4"
+        app:layout_constraintEnd_toEndOf="@+id/g4"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline" />
 
     <View style="@style/BlackKey"
         android:id="@+id/ab4"
-        app:layout_constraintEnd_toEndOf="@+id/g4"
-        app:layout_constraintStart_toStartOf="@+id/a4"
+        app:layout_constraintStart_toStartOf="@+id/g4"
+        app:layout_constraintEnd_toEndOf="@+id/a4"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline" />
 
     <View style="@style/BlackKey"
         android:id="@+id/bb4"
-        app:layout_constraintEnd_toEndOf="@+id/a4"
-        app:layout_constraintHorizontal_bias="0.325"
-        app:layout_constraintStart_toStartOf="@+id/b4"
+        app:layout_constraintStart_toStartOf="@+id/a4"
+        app:layout_constraintEnd_toEndOf="@+id/b4"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline" />
 

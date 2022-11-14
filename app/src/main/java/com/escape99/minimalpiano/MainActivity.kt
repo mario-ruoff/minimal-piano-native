@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 key.setOnTouchListener { view, event ->
                     when(event.action) {
                         MotionEvent.ACTION_DOWN -> {
-                            soundPool.play(sound, 2f, 2f, 0, 0, 1f)
+                            soundPool.play(sound, 1f, 1f, 0, 0, 1f)
                         }
                         MotionEvent.ACTION_MOVE -> { }
                         MotionEvent.ACTION_UP -> {

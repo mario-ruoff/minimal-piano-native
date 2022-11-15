@@ -5,7 +5,7 @@
     android:id="@+id/keys"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="#7f8c8d"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -57,6 +57,48 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <View style="@style/WhiteKey"
+        android:id="@+id/c5"
+        app:layout_constraintStart_toEndOf="@id/b4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View style="@style/WhiteKey"
+        android:id="@+id/d5"
+        app:layout_constraintStart_toEndOf="@+id/c5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View style="@style/WhiteKey"
+        android:id="@+id/e5"
+        app:layout_constraintStart_toEndOf="@+id/d5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View style="@style/WhiteKey"
+        android:id="@+id/f5"
+        app:layout_constraintStart_toEndOf="@+id/e5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View style="@style/WhiteKey"
+        android:id="@+id/g5"
+        app:layout_constraintStart_toEndOf="@+id/f5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View style="@style/WhiteKey"
+        android:id="@+id/a5"
+        app:layout_constraintStart_toEndOf="@+id/g5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <View style="@style/WhiteKey"
+        android:id="@+id/b5"
+        app:layout_constraintStart_toEndOf="@+id/a5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 
     <View style="@style/BlackKey"
         android:id="@+id/db4"
@@ -93,6 +135,45 @@
         android:id="@+id/bb4"
         app:layout_constraintStart_toStartOf="@+id/a4"
         app:layout_constraintEnd_toEndOf="@+id/b4"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline" />
+
+    <View style="@style/BlackKey"
+        android:id="@+id/db5"
+        app:layout_constraintStart_toStartOf="@id/c5"
+        app:layout_constraintEnd_toEndOf="@+id/d5"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline" />
+
+    <View style="@style/BlackKey"
+        android:id="@+id/eb5"
+        app:layout_constraintStart_toStartOf="@+id/d5"
+        app:layout_constraintEnd_toEndOf="@+id/e5"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline" />
+
+    <View style="@style/BlackKey"
+        android:id="@+id/gb5"
+        app:layout_constraintStart_toStartOf="@+id/f5"
+        app:layout_constraintEnd_toEndOf="@+id/g5"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline" />
+
+    <View style="@style/BlackKey"
+        android:id="@+id/ab5"
+        app:layout_constraintStart_toStartOf="@+id/g5"
+        app:layout_constraintEnd_toEndOf="@+id/a5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline" />
+
+    <View style="@style/BlackKey"
+        android:id="@+id/bb5"
+        app:layout_constraintStart_toStartOf="@+id/a5"
+        app:layout_constraintEnd_toEndOf="@+id/b5"
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/guideline" />

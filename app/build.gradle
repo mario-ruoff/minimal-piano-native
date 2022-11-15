@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace 'com.escape99.minimalpiano'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.escape99.minimalpiano"
         minSdk 22
-        targetSdk 32
-        versionCode 20
-        versionName "2.0.0"
+        targetSdk 33
+        versionCode 21
+        versionName "2.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,7 +34,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

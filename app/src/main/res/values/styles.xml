@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="WhiteKey">
-        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginStart">1dp</item>
         <item name="android:clickable">true</item>
@@ -9,7 +9,7 @@
         <item name="android:background">@drawable/white_key</item>
     </style>
     <style name="BlackKey">
-        <item name="android:layout_width">58.5dp</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginStart">1dp</item>
         <item name="android:clickable">true</item>

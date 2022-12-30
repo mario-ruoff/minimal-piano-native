@@ -4,7 +4,6 @@ import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.WindowCompat
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 key.setOnTouchListener { view, event ->
                     when(event.action) {
                         MotionEvent.ACTION_DOWN -> {
-                            soundPool.play(sound, 1f, 1f, 0, 0, 1f)
+                            soundPool.play(sound, 0.2f, 0.2f, 0, 0, 1f)
                         }
                         MotionEvent.ACTION_MOVE -> { }
                         MotionEvent.ACTION_UP -> {

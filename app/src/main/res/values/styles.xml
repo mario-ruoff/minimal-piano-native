@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="WhiteKey">
+        <item name="android:tag">whiteKey</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginStart">1dp</item>
@@ -9,11 +10,20 @@
         <item name="android:background">@drawable/white_key</item>
     </style>
     <style name="BlackKey">
+        <item name="android:tag">blackKey</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginStart">1dp</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:background">@drawable/black_key</item>
+    </style>
+    <style name="SpanButton">
+        <item name="android:layout_width">40sp</item>
+        <item name="android:layout_height">40sp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/span_button</item>
     </style>
 </resources>

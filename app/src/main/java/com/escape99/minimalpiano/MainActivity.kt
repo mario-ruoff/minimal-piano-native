@@ -5,8 +5,8 @@ import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
 import android.view.MotionEvent
-import android.view.View
 import android.widget.Button
+import android.widget.HorizontalScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.WindowCompat
@@ -17,6 +17,7 @@ import androidx.core.view.children
 class MainActivity : AppCompatActivity() {
 
     var keySpan = 10
+    var minSpan = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         setKeyWidths()
         setButtonActions()
         initializeAudio()
+        setScrollbar()
     }
 
     private fun setFullscreenMode() {
@@ -40,30 +42,37 @@ class MainActivity : AppCompatActivity() {
     private fun setButtonActions() {
         val decreaseSpan: Button = findViewById(R.id.decrease_span)
         val increaseSpan: Button = findViewById(R.id.increase_span)
-        val keys: ConstraintLayout = findViewById(R.id.keys)
+        if (keySpan <= minSpan) decreaseSpan.isEnabled = false
+        if (keySpan >= getKeyCount()) increaseSpan.isEnabled = false
 
         decreaseSpan.setOnClickListener {
-            if (keySpan > 0) keySpan -= 1
-            println("New key span: $keySpan")
+            if (keySpan > minSpan) keySpan -= 1
+            if (keySpan <= minSpan) decreaseSpan.isEnabled = false
+            if (keySpan < getKeyCount()) increaseSpan.isEnabled = true
             setKeyWidths()
         }
         increaseSpan.setOnClickListener {
             if (keySpan < getKeyCount()) keySpan += 1
-            println("New key span: $keySpan")
+            if (keySpan >= getKeyCount()) increaseSpan.isEnabled = false
+            if (keySpan > minSpan) decreaseSpan.isEnabled = true
             setKeyWidths()
         }
     }
 
+    private fun setScrollbar() {
+        val scrollbar: HorizontalScrollView = findViewById(R.id.scrollBar)
+        scrollbar.scrollTo((scrollbar.right.toFloat() / 2).toInt(), 0)
+    }
+
     private fun setKeyWidths() {
         val keys: ConstraintLayout = findViewById(R.id.keys)
-        val displayWidth = Resources.getSystem().displayMetrics.widthPixels
         for (key in keys.children) {
             val params = key.layoutParams
             if (key.tag == "whiteKey") {
-                params.width = displayWidth / keySpan - 2   // minus key border
+                params.width = getDisplayWidth() / keySpan - 2   // minus key border
             }
             if (key.tag == "blackKey") {
-                params.width = (displayWidth / keySpan * 0.65).toInt()
+                params.width = (getDisplayWidth() / keySpan * 0.65).toInt()
             }
             key.layoutParams = params
         }
@@ -106,6 +115,10 @@ class MainActivity : AppCompatActivity() {
     private fun getKeyCount(): Int {
         val keys: ConstraintLayout = findViewById(R.id.keys)
         return keys.children.filter { it.tag == "whiteKey" }.count()
+    }
+
+    private fun getDisplayWidth(): Int {
+        return Resources.getSystem().displayMetrics.widthPixels
     }
 
 }

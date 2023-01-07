@@ -18,7 +18,7 @@
         <item name="android:focusable">true</item>
         <item name="android:background">@drawable/black_key</item>
     </style>
-    <style name="SpanButton">
+    <style name="ControlButton">
         <item name="android:layout_width">40sp</item>
         <item name="android:layout_height">40sp</item>
         <item name="android:layout_margin">10dp</item>

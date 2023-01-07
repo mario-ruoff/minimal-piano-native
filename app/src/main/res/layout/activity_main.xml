@@ -7,26 +7,39 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/decrease_span"
-        style="@style/SpanButton"
-        android:text="@string/decrease_span"
+        android:id="@+id/scroll_left"
+        style="@style/ControlButton"
+        android:text="@string/scroll_left"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/increase_span"
-        style="@style/SpanButton"
-        android:text="@string/increase_span"
+        android:id="@+id/decrease_span"
+        style="@style/ControlButton"
+        android:text="@string/decrease_span"
+        app:layout_constraintStart_toEndOf="@id/scroll_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/scroll_right"
+        style="@style/ControlButton"
+        android:text="@string/scroll_right"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <HorizontalScrollView
+    <Button
+        android:id="@+id/increase_span"
+        style="@style/ControlButton"
+        android:text="@string/increase_span"
+        app:layout_constraintEnd_toStartOf="@id/scroll_right"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.escape99.minimalpiano.LockableScrollView
         android:id="@+id/scrollBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:orientation="horizontal"
-        android:scrollbarSize="25sp">
+        android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/keys"
@@ -42,10 +55,60 @@
                 app:layout_constraintGuide_percent="0.618" />
 
             <View
-                android:id="@+id/c4"
+                android:id="@+id/c3"
                 style="@style/WhiteKey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/d3"
+                style="@style/WhiteKey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/c3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/e3"
+                style="@style/WhiteKey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/d3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/f3"
+                style="@style/WhiteKey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/e3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/g3"
+                style="@style/WhiteKey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/f3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/a3"
+                style="@style/WhiteKey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/g3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/b3"
+                style="@style/WhiteKey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/a3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <View
+                android:id="@+id/c4"
+                style="@style/WhiteKey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/b3"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
@@ -89,6 +152,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/a4"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <View
                 android:id="@+id/c5"
@@ -140,13 +204,60 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
+
+
+            <View
+                android:id="@+id/db3"
+                style="@style/BlackKey"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="@+id/d3"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="@+id/c3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/eb3"
+                style="@style/BlackKey"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="@+id/e3"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="@+id/d3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/gb3"
+                style="@style/BlackKey"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="@+id/g3"
+                app:layout_constraintHorizontal_bias="0.375"
+                app:layout_constraintStart_toStartOf="@+id/f3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/ab3"
+                style="@style/BlackKey"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="@+id/a3"
+                app:layout_constraintStart_toStartOf="@+id/g3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/bb3"
+                style="@style/BlackKey"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="@+id/b3"
+                app:layout_constraintHorizontal_bias="0.625"
+                app:layout_constraintStart_toStartOf="@+id/a3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
             <View
                 android:id="@+id/db4"
                 style="@style/BlackKey"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintEnd_toEndOf="@+id/d4"
                 app:layout_constraintHorizontal_bias="0.4"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/c4"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <View
@@ -183,6 +294,7 @@
                 app:layout_constraintHorizontal_bias="0.625"
                 app:layout_constraintStart_toStartOf="@+id/a4"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <View
                 android:id="@+id/db5"
@@ -230,6 +342,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </HorizontalScrollView>
+    </com.escape99.minimalpiano.LockableScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

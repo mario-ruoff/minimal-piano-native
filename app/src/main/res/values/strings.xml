@@ -2,4 +2,6 @@
     <string name="app_name">Minimal Piano</string>
     <string name="increase_span">+</string>
     <string name="decrease_span">-</string>
+    <string name="scroll_left">&lt;</string>
+    <string name="scroll_right">&gt;</string>
 </resources>

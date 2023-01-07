@@ -1,12 +1,13 @@
 package com.escape99.minimalpiano
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Resources
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.Button
-import android.widget.HorizontalScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.WindowCompat
@@ -16,17 +17,38 @@ import androidx.core.view.children
 
 class MainActivity : AppCompatActivity() {
 
-    var keySpan = 10
-    var minSpan = 3
+    private lateinit var keyPreferences: SharedPreferences
+    private var keyCount = 0
+    private var keySpan = 0
+    private var displayWidth = 0
+    private var keyPosition = 0
+    private val minSpan = 7
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setInitialKeyPreferences()
         setFullscreenMode()
         setContentView(R.layout.activity_main)
+        keyCount = getKeyCount()
+        displayWidth = getDisplayWidth()
         setKeyWidths()
         setButtonActions()
         initializeAudio()
-        setScrollbar()
+    }
+
+    private fun setInitialKeyPreferences() {
+        keyPreferences = getPreferences(Context.MODE_PRIVATE) ?: return
+        val defaultKeySpan = resources.getInteger(R.integer.default_key_span)
+        val defaultKeyPosition = resources.getInteger(R.integer.default_key_position)
+        keySpan = keyPreferences.getInt("key_span", defaultKeySpan)
+        keyPosition = keyPreferences.getInt("key_position", defaultKeyPosition)
+    }
+
+    private fun updateKeyPreferences(valueName: String, newValue: Int) {
+        with (keyPreferences.edit()) {
+            putInt(valueName, newValue)
+            apply()
+        }
     }
 
     private fun setFullscreenMode() {
@@ -40,28 +62,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setButtonActions() {
+        val scrollBar: LockableScrollView = findViewById(R.id.scrollBar)
         val decreaseSpan: Button = findViewById(R.id.decrease_span)
         val increaseSpan: Button = findViewById(R.id.increase_span)
-        if (keySpan <= minSpan) decreaseSpan.isEnabled = false
-        if (keySpan >= getKeyCount()) increaseSpan.isEnabled = false
+        val scrollLeft: Button = findViewById(R.id.scroll_left)
+        val scrollRight: Button = findViewById(R.id.scroll_right)
 
-        decreaseSpan.setOnClickListener {
-            if (keySpan > minSpan) keySpan -= 1
-            if (keySpan <= minSpan) decreaseSpan.isEnabled = false
-            if (keySpan < getKeyCount()) increaseSpan.isEnabled = true
-            setKeyWidths()
-        }
         increaseSpan.setOnClickListener {
-            if (keySpan < getKeyCount()) keySpan += 1
-            if (keySpan >= getKeyCount()) increaseSpan.isEnabled = false
-            if (keySpan > minSpan) decreaseSpan.isEnabled = true
-            setKeyWidths()
+            println("ScrollX: ${scrollBar.scrollX}")
+            if (keySpan > minSpan) {
+                keySpan -= 1
+                updateKeyPreferences("key_span", keySpan)
+                setKeyWidths()
+            }
         }
-    }
-
-    private fun setScrollbar() {
-        val scrollbar: HorizontalScrollView = findViewById(R.id.scrollBar)
-        scrollbar.scrollTo((scrollbar.right.toFloat() / 2).toInt(), 0)
+        decreaseSpan.setOnClickListener {
+            println("ScrollX: ${scrollBar.scrollX}")
+            if (keySpan < keyCount) {
+                keySpan += 1
+                updateKeyPreferences("key_span", keySpan)
+                setKeyWidths()
+            }
+        }
+        scrollLeft.setOnClickListener {
+            println("ScrollX: ${scrollBar.scrollX}")
+            scrollBar.smoothScrollBy(- (displayWidth / keySpan + 2), 0)
+        }
+        scrollRight.setOnClickListener {
+            println("ScrollX: ${scrollBar.scrollX}")
+            println("ScrollBar pixels: ${(displayWidth / keySpan - 2) * keyCount}")
+            scrollBar.smoothScrollBy(displayWidth / keySpan + 2, 0)
+        }
     }
 
     private fun setKeyWidths() {
@@ -69,10 +100,10 @@ class MainActivity : AppCompatActivity() {
         for (key in keys.children) {
             val params = key.layoutParams
             if (key.tag == "whiteKey") {
-                params.width = getDisplayWidth() / keySpan - 2   // minus key border
+                params.width = displayWidth / keySpan - 2   // 2 = key border
             }
             if (key.tag == "blackKey") {
-                params.width = (getDisplayWidth() / keySpan * 0.65).toInt()
+                params.width = (displayWidth / keySpan * 0.65).toInt()
             }
             key.layoutParams = params
         }
@@ -99,6 +130,7 @@ class MainActivity : AppCompatActivity() {
                 key.setOnTouchListener { view, event ->
                     when(event.action) {
                         MotionEvent.ACTION_DOWN -> {
+                            println("Key name: $keyName")
                             soundPool.play(sound, 0.2f, 0.2f, 0, 0, 1f)
                         }
                         MotionEvent.ACTION_MOVE -> { }

@@ -6,6 +6,8 @@ import android.content.res.Resources
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -26,17 +28,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setInitialKeyPreferences()
+        requestInitialKeyPreferences()
         setFullscreenMode()
         setContentView(R.layout.activity_main)
-        keyCount = getKeyCount()
-        displayWidth = getDisplayWidth()
+        setInitialKeyParams()
         setKeyWidths()
         setButtonActions()
         initializeAudio()
+        Handler(Looper.getMainLooper()).postDelayed({
+            setKeyPosition()
+        }, 100)
     }
 
-    private fun setInitialKeyPreferences() {
+    private fun setInitialKeyParams() {
+        val keys: ConstraintLayout = findViewById(R.id.keys)
+        keyCount = keys.children.filter { it.tag == "whiteKey" }.count()
+        displayWidth = Resources.getSystem().displayMetrics.widthPixels
+    }
+
+    private fun requestInitialKeyPreferences() {
         keyPreferences = getPreferences(Context.MODE_PRIVATE) ?: return
         val defaultKeySpan = resources.getInteger(R.integer.default_key_span)
         val defaultKeyPosition = resources.getInteger(R.integer.default_key_position)
@@ -74,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                 keySpan -= 1
                 updateKeyPreferences("key_span", keySpan)
                 setKeyWidths()
+                setKeyPosition()
             }
         }
         decreaseSpan.setOnClickListener {
@@ -82,16 +93,24 @@ class MainActivity : AppCompatActivity() {
                 keySpan += 1
                 updateKeyPreferences("key_span", keySpan)
                 setKeyWidths()
+                setKeyPosition()
             }
         }
         scrollLeft.setOnClickListener {
             println("ScrollX: ${scrollBar.scrollX}")
-            scrollBar.smoothScrollBy(- (displayWidth / keySpan + 2), 0)
+            if (keyPosition > 0 ) {
+                keyPosition -= 1
+                updateKeyPreferences("key_position", keyPosition)
+                scrollBar.smoothScrollBy(- (displayWidth / keySpan + 2), 0)
+            }
         }
         scrollRight.setOnClickListener {
             println("ScrollX: ${scrollBar.scrollX}")
-            println("ScrollBar pixels: ${(displayWidth / keySpan - 2) * keyCount}")
-            scrollBar.smoothScrollBy(displayWidth / keySpan + 2, 0)
+            if (keyPosition < keyCount - keySpan) {
+                keyPosition += 1
+                updateKeyPreferences("key_position", keyPosition)
+                scrollBar.smoothScrollBy(displayWidth / keySpan + 2, 0)
+            }
         }
     }
 
@@ -107,6 +126,13 @@ class MainActivity : AppCompatActivity() {
             }
             key.layoutParams = params
         }
+    }
+
+    private fun setKeyPosition() {
+        // val contentWidth = (displayWidth / keySpan.toFloat() * keyCount).toInt()
+        // println("Content width: $contentWidth")
+        val scrollBar: LockableScrollView = findViewById(R.id.scrollBar)
+        scrollBar.scrollTo((displayWidth / keySpan + 2) * keyPosition, 0)
     }
 
     private fun initializeAudio() {
@@ -142,15 +168,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun getKeyCount(): Int {
-        val keys: ConstraintLayout = findViewById(R.id.keys)
-        return keys.children.filter { it.tag == "whiteKey" }.count()
-    }
-
-    private fun getDisplayWidth(): Int {
-        return Resources.getSystem().displayMetrics.widthPixels
     }
 
 }

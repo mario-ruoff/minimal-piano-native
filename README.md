@@ -17,7 +17,7 @@
 </p>
 
 ## Description
-Minimal Piano Native is is an free, open-source piano app without any ads or in-app purchases. It is a rebuild of the original Minimal Piano app built in ReactJS: [Minimal Piano React](https://github.com/mario-ruoff/minimal-piano-react)
+Minimal Piano Native is is an free, open-source piano app without any ads or in-app purchases. It is a rebuild of the original Minimal Piano app built in React: [Minimal Piano React](https://github.com/mario-ruoff/minimal-piano-react)
 
 ## Screenshots
 <p align="center">
@@ -27,39 +27,22 @@ Minimal Piano Native is is an free, open-source piano app without any ads or in-
 </p>
 
 ## Install
-[<img src="fastlane/metadata/android/en-US/images/appstore_banner.png" width="30%">](https://testflight.apple.com/join/j7uKoEDl)
-[<img src="fastlane/metadata/android/en-US/images/playstore_banner.png" width="30%">](https://play.google.com/store/apps/details?id=com.opennutritracker.ont.opennutritracker)
+<a href='https://play.google.com/store/apps/details?id=com.escape99.minimalpiano&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="30%" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 
-## Key Features
-- **🍎 Nutritional Tracking:** Easily log your meals and snacks, and access a vast database of food items and ingredients to get detailed nutritional information.
-- **📓 Food Diary:** Maintain a comprehensive food diary to keep track of your daily food consumption, habits, and progress.
-- **🍽️ Custom Meals:** Plan your meals in advance, create personalized meal plans, and optimize them according to your dietary goals.
-- **📷 Barcode Scanner:** Scan barcodes on packaged food items to instantly retrieve their nutritional information.
-- **🔒 Privacy Focused:** OpenNutriTracker prioritizes the privacy its users. It does not collect or share any personal data without your consent.
-- **🚫💰 No Subscription, In-App Purchases, or Ads:** OpenNutriTracker is completely free to use, without any subscription fees, in-app purchases, or intrusive advertisements.
-
-## Privacy
-See [Data Protection](https://www.iubenda.com/privacy-policy/53501884)
-- **Data Encryption**: All collected user data is encrypted and stored locally on your device
-- **Minimal Data Collection**: OpenNutriTracker only collects the necessary information required for tracking nutrition and providing personalized insights. Your data will not be shared with third parties without your consent.
-- **Open-Source**: OpenNutriTracker is an open-source application
+## Features
+- 🎉 Ad-free
+- ⭐️ No premium purchases
+- 🌹 Beautiful buttons
+- 👇 Multitouch support
+- 🔈 One simple piano sound
+- ❤️️ Made with love
 
 ## TODOs
-- Add serving sizes to meals
-- Add Imperial unit support
-- Add support for Material You themes
+- Add moving piano pitch feature
+- Add expanding/shrinking key amount feature
 
 ## Contribution
-Contributions to OpenNutriTracker are welcome! If you find any issues or have suggestions for new features, please open an issue or submit a pull request. Make sure to follow the project's code style and guidelines.
-
-## Disclaimer
-OpenNutriTracker is not a medical application. All data provided is not validated and should be used with caution. Please maintain a healthy lifestyle and consult a professional if you have any problems. Use during illness, pregnancy or lactation is not recommended.
-
-The application is still under construction. Errors, bugs and crashes might occur.
-
-## Acknowledgments
-The OpenNutriTracker project was inspired by the need for a simple and effective nutrition tracking tool.
-The food database used in OpenNutriTracker is powered by [Open Food Facts](https://world.openfoodfacts.org/) and [Food Data Central](https://fdc.nal.usda.gov/).
+Contributions to Minimal Piano are welcome! If you find any issues or have suggestions for new features, please open an issue or submit a pull request. Make sure to follow the code style and guidelines.
 
 ## License
 This project is licensed under the GNU General Public License v3.0 License. See the [LICENSE](LICENSE) file for more information.
@@ -67,7 +50,6 @@ This project is licensed under the GNU General Public License v3.0 License. See 
 ## Contact
 For questions, suggestions, or collaborations, feel free to contact the project maintainer:
 
-Simon Oppowa
+Mario Ruoff
 
-- GitHub: [@simonoppowa](https://github.com/simonoppowa)
-- Email: [opennutritracker-dev@pm.me](mailto:opennutritracker-dev@pm.me)
+- GitHub: [@mario-ruoff](https://github.com/mario-ruoff)

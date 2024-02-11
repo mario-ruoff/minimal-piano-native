@@ -21,9 +21,9 @@ Minimal Piano Native is is an free, open-source piano app without any ads or in-
 
 ## Screenshots
 <p align="center">
-  <img alt="Logo" src="src/main/assets/playstore-images/phone-image-1.jpg" width="50%" />
+  <img alt="Logo" src="app/src/main/assets/playstore-images/phone-image-1.jpg" width="50%" />
   &nbsp;&nbsp;
-  <img alt="Logo" src="src/main/assets/playstore-images/phone-image-2.jpg" width="50%" />
+  <img alt="Logo" src="app/src/main/assets/playstore-images/phone-image-2.jpg" width="50%" />
 </p>
 
 ## Install

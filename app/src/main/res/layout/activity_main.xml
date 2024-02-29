@@ -14,25 +14,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/decrease_span"
+        android:id="@+id/scroll_right"
         style="@style/ControlButton"
-        android:text="@string/decrease_span"
+        android:text="@string/scroll_right"
         app:layout_constraintStart_toEndOf="@id/scroll_left"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/scroll_right"
+        android:id="@+id/decrease_span"
         style="@style/ControlButton"
-        android:text="@string/scroll_right"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/decrease_span"
+        app:layout_constraintEnd_toStartOf="@id/increase_span"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/increase_span"
         style="@style/ControlButton"
         android:text="@string/increase_span"
-        app:layout_constraintEnd_toStartOf="@id/scroll_right"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.escape99.minimalpiano.LockableScrollView
         android:id="@+id/scrollBar"

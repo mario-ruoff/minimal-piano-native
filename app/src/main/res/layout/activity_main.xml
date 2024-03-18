@@ -6,35 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/scroll_left"
-        style="@style/ControlButton"
-        android:text="@string/scroll_left"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/scroll_right"
-        style="@style/ControlButton"
-        android:text="@string/scroll_right"
-        app:layout_constraintStart_toEndOf="@id/scroll_left"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/decrease_span"
-        style="@style/ControlButton"
-        android:text="@string/decrease_span"
-        app:layout_constraintEnd_toStartOf="@id/increase_span"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/increase_span"
-        style="@style/ControlButton"
-        android:text="@string/increase_span"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <com.escape99.minimalpiano.LockableScrollView
         android:id="@+id/scrollBar"
         android:layout_width="match_parent"
@@ -344,5 +315,38 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.escape99.minimalpiano.LockableScrollView>
+
+
+    <ImageButton
+        android:id="@+id/scroll_left"
+        style="@style/ControlButton"
+        app:srcCompat="@drawable/icon_arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/scroll_left" />
+
+    <ImageButton
+        android:id="@+id/scroll_right"
+        style="@style/ControlButton"
+        app:srcCompat="@drawable/icon_arrow_right"
+        app:layout_constraintStart_toEndOf="@id/scroll_left"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/scroll_right" />
+
+    <ImageButton
+        android:id="@+id/decrease_span"
+        style="@style/ControlButton"
+        app:srcCompat="@drawable/icon_remove"
+        app:layout_constraintEnd_toStartOf="@id/increase_span"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/decrease_span" />
+
+    <ImageButton
+        android:id="@+id/increase_span"
+        style="@style/ControlButton"
+        app:srcCompat="@drawable/icon_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/increase_span" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.MotionEvent
-import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.WindowCompat
@@ -73,11 +73,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun setButtonActions() {
         val scrollBar: LockableScrollView = findViewById(R.id.scrollBar)
-        val decreaseSpan: Button = findViewById(R.id.decrease_span)
-        val increaseSpan: Button = findViewById(R.id.increase_span)
-        val scrollLeft: Button = findViewById(R.id.scroll_left)
-        val scrollRight: Button = findViewById(R.id.scroll_right)
+        val scrollLeft: ImageButton = findViewById(R.id.scroll_left)
+        val scrollRight: ImageButton = findViewById(R.id.scroll_right)
+        val decreaseSpan: ImageButton = findViewById(R.id.decrease_span)
+        val increaseSpan: ImageButton = findViewById(R.id.increase_span)
 
+        scrollLeft.setOnClickListener {
+            println("ScrollX: ${scrollBar.scrollX}")
+            if (keyPosition > 0 ) {
+                keyPosition -= 1
+                updateKeyPreferences("key_position", keyPosition)
+                scrollBar.smoothScrollBy(- (displayWidth / keySpan + 2), 0)
+            }
+        }
+        scrollRight.setOnClickListener {
+            println("ScrollX: ${scrollBar.scrollX}")
+            if (keyPosition < keyCount - keySpan) {
+                keyPosition += 1
+                updateKeyPreferences("key_position", keyPosition)
+                scrollBar.smoothScrollBy(displayWidth / keySpan + 2, 0)
+            }
+        }
         increaseSpan.setOnClickListener {
             println("ScrollX: ${scrollBar.scrollX}")
             if (keySpan > minSpan) {
@@ -94,22 +110,6 @@ class MainActivity : AppCompatActivity() {
                 updateKeyPreferences("key_span", keySpan)
                 setKeyWidths()
                 setKeyPosition()
-            }
-        }
-        scrollLeft.setOnClickListener {
-            println("ScrollX: ${scrollBar.scrollX}")
-            if (keyPosition > 0 ) {
-                keyPosition -= 1
-                updateKeyPreferences("key_position", keyPosition)
-                scrollBar.smoothScrollBy(- (displayWidth / keySpan + 2), 0)
-            }
-        }
-        scrollRight.setOnClickListener {
-            println("ScrollX: ${scrollBar.scrollX}")
-            if (keyPosition < keyCount - keySpan) {
-                keyPosition += 1
-                updateKeyPreferences("key_position", keyPosition)
-                scrollBar.smoothScrollBy(displayWidth / keySpan + 2, 0)
             }
         }
     }

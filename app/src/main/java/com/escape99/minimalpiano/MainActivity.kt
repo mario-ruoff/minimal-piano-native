@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity() {
         val scrollBar: LockableScrollView = findViewById(R.id.scrollBar)
 
         scrollLeft.setOnClickListener {
-            println("ScrollX: ${scrollBar.scrollX}")
             if (keyPosition > 0 ) {
                 keyPosition -= 1
                 scrollBar.smoothScrollBy(- (displayWidth / keySpan + 2), 0)
@@ -93,7 +92,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         scrollRight.setOnClickListener {
-            println("ScrollX: ${scrollBar.scrollX}")
             if (keyPosition < keyCount - keySpan) {
                 keyPosition += 1
                 scrollBar.smoothScrollBy(displayWidth / keySpan + 2, 0)
@@ -102,7 +100,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         increaseSpan.setOnClickListener {
-            println("ScrollX: ${scrollBar.scrollX}")
             if (keySpan > minSpan) {
                 keySpan -= 1
                 setKeyWidths()
@@ -112,7 +109,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         decreaseSpan.setOnClickListener {
-            println("ScrollX: ${scrollBar.scrollX}")
             if (keySpan < keyCount) {
                 keySpan += 1
                 setKeyWidths()
@@ -172,7 +168,7 @@ class MainActivity : AppCompatActivity() {
                 key.setOnTouchListener { view, event ->
                     when(event.action) {
                         MotionEvent.ACTION_DOWN -> {
-                            println("Key name: $keyName")
+                            // println("Key name: $keyName")
                             soundPool.play(sound, 0.2f, 0.2f, 0, 0, 1f)
                         }
                         MotionEvent.ACTION_MOVE -> { }

@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
     private var displayWidth = 0
     private var keyPosition = 0
     private val minSpan = 7
+    private lateinit var scrollLeft: ImageButton
+    private lateinit var scrollRight: ImageButton
+    private lateinit var decreaseSpan: ImageButton
+    private lateinit var increaseSpan: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,16 +38,11 @@ class MainActivity : AppCompatActivity() {
         setInitialKeyParams()
         setKeyWidths()
         setButtonActions()
+        setButtonPermissions()
         initializeAudio()
         Handler(Looper.getMainLooper()).postDelayed({
             setKeyPosition()
         }, 100)
-    }
-
-    private fun setInitialKeyParams() {
-        val keys: ConstraintLayout = findViewById(R.id.keys)
-        keyCount = keys.children.filter { it.tag == "whiteKey" }.count()
-        displayWidth = Resources.getSystem().displayMetrics.widthPixels
     }
 
     private fun requestInitialKeyPreferences() {
@@ -52,13 +51,6 @@ class MainActivity : AppCompatActivity() {
         val defaultKeyPosition = resources.getInteger(R.integer.default_key_position)
         keySpan = keyPreferences.getInt("key_span", defaultKeySpan)
         keyPosition = keyPreferences.getInt("key_position", defaultKeyPosition)
-    }
-
-    private fun updateKeyPreferences(valueName: String, newValue: Int) {
-        with (keyPreferences.edit()) {
-            putInt(valueName, newValue)
-            apply()
-        }
     }
 
     private fun setFullscreenMode() {
@@ -71,47 +63,71 @@ class MainActivity : AppCompatActivity() {
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
     }
 
+    private fun setInitialKeyParams() {
+        val keys: ConstraintLayout = findViewById(R.id.keys)
+        keyCount = keys.children.filter { it.tag == "whiteKey" }.count()
+        displayWidth = Resources.getSystem().displayMetrics.widthPixels
+        scrollLeft = findViewById(R.id.scroll_left)
+        scrollRight = findViewById(R.id.scroll_right)
+        decreaseSpan = findViewById(R.id.decrease_span)
+        increaseSpan = findViewById(R.id.increase_span)
+    }
+
+    private fun updateKeyPreferences(valueName: String, newValue: Int) {
+        with (keyPreferences.edit()) {
+            putInt(valueName, newValue)
+            apply()
+        }
+    }
+
     private fun setButtonActions() {
         val scrollBar: LockableScrollView = findViewById(R.id.scrollBar)
-        val scrollLeft: ImageButton = findViewById(R.id.scroll_left)
-        val scrollRight: ImageButton = findViewById(R.id.scroll_right)
-        val decreaseSpan: ImageButton = findViewById(R.id.decrease_span)
-        val increaseSpan: ImageButton = findViewById(R.id.increase_span)
 
         scrollLeft.setOnClickListener {
             println("ScrollX: ${scrollBar.scrollX}")
             if (keyPosition > 0 ) {
                 keyPosition -= 1
-                updateKeyPreferences("key_position", keyPosition)
                 scrollBar.smoothScrollBy(- (displayWidth / keySpan + 2), 0)
+                setButtonPermissions()
+                updateKeyPreferences("key_position", keyPosition)
             }
         }
         scrollRight.setOnClickListener {
             println("ScrollX: ${scrollBar.scrollX}")
             if (keyPosition < keyCount - keySpan) {
                 keyPosition += 1
-                updateKeyPreferences("key_position", keyPosition)
                 scrollBar.smoothScrollBy(displayWidth / keySpan + 2, 0)
+                setButtonPermissions()
+                updateKeyPreferences("key_position", keyPosition)
             }
         }
         increaseSpan.setOnClickListener {
             println("ScrollX: ${scrollBar.scrollX}")
             if (keySpan > minSpan) {
                 keySpan -= 1
-                updateKeyPreferences("key_span", keySpan)
                 setKeyWidths()
                 setKeyPosition()
+                setButtonPermissions()
+                updateKeyPreferences("key_span", keySpan)
             }
         }
         decreaseSpan.setOnClickListener {
             println("ScrollX: ${scrollBar.scrollX}")
             if (keySpan < keyCount) {
                 keySpan += 1
-                updateKeyPreferences("key_span", keySpan)
                 setKeyWidths()
                 setKeyPosition()
+                setButtonPermissions()
+                updateKeyPreferences("key_span", keySpan)
             }
         }
+    }
+
+    private fun setButtonPermissions() {
+        scrollLeft.isEnabled = keyPosition > 0
+        scrollRight.isEnabled = keyPosition < keyCount - keySpan
+        increaseSpan.isEnabled = keySpan > minSpan
+        decreaseSpan.isEnabled = keySpan < keyCount
     }
 
     private fun setKeyWidths() {

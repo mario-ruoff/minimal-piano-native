@@ -17,7 +17,7 @@
 </p>
 
 ## Description
-Minimal Piano Native is is an free, open-source piano app without any ads or in-app purchases. It is a rebuild of the original Minimal Piano app built in React: [Minimal Piano React](https://github.com/mario-ruoff/minimal-piano-react)
+Minimal Piano Native is is a free, open-source piano app without any ads or in-app purchases. It is a rebuild of the original Minimal Piano app built in React: [Minimal Piano React](https://github.com/mario-ruoff/minimal-piano-react)
 
 ## Screenshots
 <p align="center">
